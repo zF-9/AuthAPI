@@ -1,4 +1,4 @@
-# Node.js – JWT Authentication & Authorization example with JSONWebToken & Sequelize - For Login API prototyping
+# Login API prototyping using Node.js – [JWT Authentication & Authorization example with JSONWebToken & Sequelize]
 
 For more detail, please visit:
 > [Node.js JWT Authentication & Authorization example](https://bezkoder.com/node-js-jwt-authentication-mysql/)
