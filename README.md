@@ -11,7 +11,7 @@ Node.js with JSON Web Token (JWT) Authentication & Sequelize
 
 ## Project Dependencies
   ### Node.JS
-  [Node.Js Official Website]https://nodejs.org/en/download/
+  [Node.Js Official Website](https://nodejs.org/en/download/)
   
   ### Sequelize/JWT/Mysql Sequelize
   ```
