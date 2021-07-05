@@ -2,7 +2,7 @@
 
 Node.js with JSON Web Token (JWT) Authentication & Sequelize
 
- ## New Features ##
+ ## Project Requirements ##
     - Express JS
     - bcryptjs 
     - jsonwebtoken (JWT)
