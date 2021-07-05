@@ -10,9 +10,12 @@ Node.js with JSON Web Token (JWT) Authentication & Sequelize
     - MySQL
 
 ## Project Dependencies
-  ### Sequelize
+  ### Node.JS
+  [Node.Js Official Website]https://nodejs.org/en/download/
+  
+  ### Sequelize/JWT/Mysql Sequelize
   ```
-  npm install --save sequelize
+  npm install express sequelize mysql2 body-parser cors jsonwebtoken bcryptjs --save
   ```
 
 ## Project setup
