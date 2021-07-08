@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+
 const app = express();
 
 var corsOptions = {
@@ -39,12 +40,19 @@ app.get('/login', function (req, res) {
   res.sendFile(__dirname + '/app/views/login.html');
 });
 
+app.post('/test_log', (req, res) => {
+  // Insert Login Code Here
+  let username = req.body.username;
+  let password = req.body.password;
+  res.send(`Username: ${username} Password: ${password}`);
+});
+
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8484;
+const PORT = process.env.PORT || 4848
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

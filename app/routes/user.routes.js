@@ -10,7 +10,7 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
+  app.get("/api/test/all", controller.allAccess); // app.get("<route_name>", controller.<contorller_instances>);
 
   app.get(
     "/api/test/user",
