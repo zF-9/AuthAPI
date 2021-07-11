@@ -27,3 +27,6 @@ npm install
 ```
 node server.js
 ```
+
+## Demo 
+<img src="https://github.com/zF-9/AuthAPI/blob/5792be82e48001c3c6fb21e76fd8c6fd3441c8f3/app/img/sign_demo.gif">
