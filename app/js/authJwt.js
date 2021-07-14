@@ -1,31 +1,30 @@
 const jwt = require("jsonwebtoken");
+//var cookieParser = require('cookie-parser');
 const config = require("../config/auth.config.js");
 const db = require("../models");
 const User = db.user;
 
-/*var io = require('socket.io')(server);
-var socketioJwt = require('socketio-jwt');
-require('dotenv').config({path: '../laravel/.env'});*/
-
-// Accept connection and authorize token
-/*io.on('connection', socketioJwt.authorize({
-  secret: process.env.JWT_SECRET,
-  timeout: 15000
-}));
-// When authenticated, send back name + email over socket
-io.on('authenticated', function (socket) {
-  console.log(socket.decoded_token);
-  socket.emit('name', socket.decoded_token.name);
-  socket.emit('email', socket.decoded_token.email);
-});*/
-
-
 verifyToken = (req, res, next) => {
+  /*const header = req.headers['Authorization'];
+  if(typeof header != 'undefined'){
+    const bearer = header.split(' ');
+    const token = bearer[1];
+    //req.token = token;
+    next();
+  }
+  else {
+    res.status(403).send({
+      message: "No Authorization provided!. header:[ " + header + " ]"
+    });
+  }*/
   let token = req.headers["x-access-token"];
-
+  //let token = req.cookie('x-access-token');
+  //console.log(token);
+  //let token_post = token.decode('UTF-8');
+  //console.log(token);
   if (!token) {
     return res.status(403).send({
-      message: "No token provided!"
+      message: "No token provided!. Token:[ " + token + " ]"
     });
   }
 
@@ -96,6 +95,20 @@ isModeratorOrAdmin = (req, res, next) => {
     });
   });
 };
+
+/*checkToken = (req, res, next) => {
+  const header = req.headers['Authorization'];
+    if(typeof header != 'undefined'){
+      const bearer = header.split(' ');
+      const token = bearer[1];
+      req.token = token;
+      next();
+    }
+    else {
+      res.sendStatus(403);
+    }
+};*/
+
 
 const authJwt = {
   verifyToken: verifyToken,
