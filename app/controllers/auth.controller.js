@@ -1,9 +1,13 @@
-//const app = express();
+const express = require("express");
+const cookieParser = require('cookie-parser');
+const app = express();
+app.use(express.static(__dirname + '/public'));
 const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
 
+app.use(cookieParser());
 const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
@@ -80,15 +84,25 @@ exports.signin = (req, res) => {
         //res.cookie('x-access-token', token);
         //res.setHeader('x-access-token', token); //pass token in header
         // obj send to DOM
-        res.header('x-access-token', token);
-        res.status(200).send({
+        //res.redirect('/cubatrytest');
+        res.header('x-access-token', token); 
+        res.cookie('x-access-token', token, { expires: new Date(Date.now() + 900000), httpOnly: true });    // You can look up the options at the API reference
+        //res.header('Authorization', auth);
+        res.redirect('/cubatrytest');/*.send({
           id: user.id,
           username: user.username,
           email: user.email,
           roles: authorities,
           accessToken: token
-        });
-        console.log(token);
+        });*/
+        /*res.status(200);/*.send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities,
+          accessToken: token
+        });*/
+        console.log(res._headers);
       });
         
     })

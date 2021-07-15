@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
 //var io = require('socket.io');
 //var socketioJwt = require('socketio-jwt');
@@ -13,12 +14,14 @@ var bcrypt = require("bcryptjs");
 
 
 const app = express();
+app.use(cookieParser());
+
 
 var corsOptions = {
   origin: "http://localhost:8081"
 };
 
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(cors(corsOptions));
 
@@ -49,6 +52,15 @@ app.use(cors({
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Auth-Proto application." });
+});
+
+// Another simple route: for testing
+app.get("/cubatrytest", (req, res) => {
+  //let token = req.headers["x-access-token"];
+  const token = req.cookies["x-access-token"];
+  //const token = (new URL(document.location)).searchParams.get('token');
+  res.sendFile(__dirname + '/app/views/container.html');
+  console.log(token);
 });
 
 // Test route for ui/ux 

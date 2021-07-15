@@ -1,8 +1,11 @@
+const express = require("express");
 const jwt = require("jsonwebtoken");
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 const config = require("../config/auth.config.js");
 const db = require("../models");
 const User = db.user;
+const app = express();
+app.use(cookieParser());
 
 verifyToken = (req, res, next) => {
   /*const header = req.headers['Authorization'];
@@ -17,7 +20,8 @@ verifyToken = (req, res, next) => {
       message: "No Authorization provided!. header:[ " + header + " ]"
     });
   }*/
-  let token = req.headers["x-access-token"];
+  //let token = req.headers["x-access-token"];
+  const token = req.cookies["x-access-token"];
   //let token = req.cookie('x-access-token');
   //console.log(token);
   //let token_post = token.decode('UTF-8');
@@ -28,6 +32,7 @@ verifyToken = (req, res, next) => {
     });
   }
 
+  //snippet for every-client side: with cookie-parser
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
@@ -37,6 +42,7 @@ verifyToken = (req, res, next) => {
     req.userId = decoded.id;
     next();
   });
+  //snippet for every-client side: with cookie-parser
 };
 
 isAdmin = (req, res, next) => {
