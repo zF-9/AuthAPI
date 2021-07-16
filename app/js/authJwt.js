@@ -26,13 +26,14 @@ verifyToken = (req, res, next) => {
   //console.log(token);
   //let token_post = token.decode('UTF-8');
   //console.log(token);
+
   if (!token) {
     return res.status(403).send({
       message: "No token provided!. Token:[ " + token + " ]"
     });
   }
 
-  //snippet for every-client side: with cookie-parser
+  //snippet for client side: with cookie-parser
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
@@ -42,7 +43,7 @@ verifyToken = (req, res, next) => {
     req.userId = decoded.id;
     next();
   });
-  //snippet for every-client side: with cookie-parser
+  //snippet for client side: with cookie-parser
 };
 
 isAdmin = (req, res, next) => {

@@ -85,23 +85,16 @@ exports.signin = (req, res) => {
         //res.setHeader('x-access-token', token); //pass token in header
         // obj send to DOM
         //res.redirect('/cubatrytest');
-        res.header('x-access-token', token); 
+        //res.header('x-access-token', token); 
         res.cookie('x-access-token', token, { expires: new Date(Date.now() + 900000), httpOnly: true });    // You can look up the options at the API reference
         //res.header('Authorization', auth);
-        res.redirect('/cubatrytest');/*.send({
+        res.status(200).send({
           id: user.id,
           username: user.username,
           email: user.email,
           roles: authorities,
           accessToken: token
-        });*/
-        /*res.status(200);/*.send({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          roles: authorities,
-          accessToken: token
-        });*/
+        });
         console.log(res._headers);
       });
         
